@@ -1,18 +1,452 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {  
+      font-family: FuturisticYourselfRegular;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;  /* Added space between left and right side */
+      background-color: #7a587f;
+      background-image: URL("GUEST_8ad05a13-7cd5-4a41-b89a-0a267d1926de copy.jpg");
+      height: 100vh;
+    }
 
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <meta charset="utf-8" />
+    #title {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      color: rgb(255, 84, 84);
+      padding: 10px;
+      font-size: 3pc;
+      margin-top: 30px;
+      text-align: left;
+      border-radius: 20px;
+      margin-left: 20px;
+    }
 
+    #container {
+      display: flex;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      font-size: 3pc;
+      margin-top: 180px;
+      text-align: center;
+    
+    }
+
+    .controls {
+      justify-content: center ;
+
+    }
+
+    .controls input[type="range"] {
+      margin: 5px 0;
+    }
+
+    .button-group {
+ 
+    }
+
+    .button-group button {
+   
+      width: 90px;
+      height: 90px;
+      gap: 15px;
+      border-radius: 120px;
+      font-size: 24px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      align-content: left;
+      border: #ff0787;
+      border-style: dotted;
+     
+    }
+
+    .button-group button {
+      font-size: 24px;
+      margin-right: 90px;
+      padding-left: 10px;
+      font-family: FuturisticYourselfRegular;
+      background-color: #ff0707;
+    }
+
+    .button-group button:hover {
+      font-size: 24px;
+      background-color: #b4ffa8;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+  
+    .button-group button#stop {
+      background-color: #ff0787;   
+      transition: transform 0.3s ease, background-color 0.3s ease; 
+   
+  
+    }
+
+    .button-group button#stop:hover {
+      background-color: rgb(139, 0, 0);
+    }
+
+
+
+    .sound-selection {
+     display: ;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+      padding: 20px;
+ 
+      position: fixed;
+      bottom: 20px;
+      z-index: 10;
+      text-align: center;
+      font-style: white;
+    }
+
+    .sound-selection button {
+      font-style: white;
+      overflow: hidden;
+      width:100px;
+      width: 230px;
+      height: 130px;  /* Adjusted size */
+      font-size: 34px;
+      background-color: #001859;
+      color: white;
+      border: none;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      text-align: center;
+      border: #ff0787;
+      border-style: dashed;
+      font-family: FuturisticYourselfRegular ;
+
+
+    }
+
+    .sound-selection button:hover {
+      transform: scale(1.5);
+      transform:matrix3d(2.3)
+       /* Hover effect turns into star shape */
+    }
+    .recording-status {
+      font-size: 38px;
+      margin-top: 10px;
+      background-color: #f4ff9e;
+      color: rgb(76, 15, 15);
+      padding: 5px;
+      text-align: right;
+
+    }
+
+    .recordings-list-container {
+      font-size: 28px;
+      margin-top: 20px;
+      top: 20px;
+      color: rgb(76, 15, 15);
+      padding: 5px;
+     
+      text-align: right;
+    
+    }
+
+    .recordings-list {
+      width:100px;
+      align-items: left;
+      list-style-type: none;
+      padding: 0;
+      font-size: 28px;
+      margin-top: 20px;
+      background-color: #559eb6;
+      color: rgb(76, 15, 15);
+      padding: 5px;
+      border-radius: 5px;
+      text-align: right;
+      width: 100%;
+
+    }
+
+    /* Adjust the right side recording section */
+    #right-side {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 60px;
+      height: 10px;
+      max-height: 200px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      color: white;
+    }
+
+    #recordings-list {
+      display:grid;
+      max-height: 80px;
+      overflow-y: auto;
+      color: white;
+      font-style: italic;
+    }
+    
+  </style>
 </head>
-
 <body>
 
-  <img id="image1" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/212131/audiokeys-mapping-rows1.jpg" width="100%">
+  <div id="title">Ketis Synthesizer</div>
+  
+  <div id="container">
+    <!-- Controls Section -->
+    <div class="button-group">
+      <!-- Start, Stop, Record buttons -->
+      <button id="record">Start Recording</button>
+      <button id="stop">Stop Sounds</button>
+    </div>
+    
+    <div class="controls">
+      <label for="volume-control">Master Volume</label><br>
+      <input type="range" id="volume-control" min="0" max="1" step="0.05" value="0.1"><br>
+    </div>
+  </div>
 
-  <script src="sketch.js"></script>
-  <button onclick="toggle()">Start/stop</button>
+  <!-- Recording Section on the right -->
+  <div id="right-side">
+    <div class="recording-status" id="recording-status"></div>
+
+    <div class="recordings-list-container">
+      <h3></h3>
+      <ul class="recordings-list" id="recordings-list"></ul>
+    </div>
+  </div>
+
+  <!-- Sound selection at the bottom -->
+  <div class="sound-selection">
+ 
+    <button id="sound-water">Relax</button>
+    <button id="sound-wind">Wind</button>
+    <button id="sound-choir">wake me</button>
+    <button id="sound-sine">wavey</button>
+    <button id="sound-square">Squarey</button>
+    <button id="sound-triangle">Triangles</button>
+    <button id="sound-sawtooth">Toothy</button>
+  </div>
+
+  <!-- Audio files for sound effects -->
+  <audio id="water-sound" src="relaxing-music-instrumental-romantic-chill-studying-mind-refreshing-128-ytshorts.savetube.me.mp3" preload="auto"></audio>
+  <audio id="wind-sound" src="Free sound effect  wind sound.mp3" preload="auto"></audio>
+  <audio id="choir-sound" src="wake-me-up-avicii-one-voice-children-s-choir-kids-cover-official-music-video-128-ytshorts.savetube.me.mp3" preload="auto"></audio>
+
+  <script>
+    var AudioContext = window.AudioContext || window.webkitAudioContext;
+    const context = new AudioContext();
+    const masterVolume = context.createGain();
+    masterVolume.connect(context.destination);
+
+    const startButton = document.querySelector('#start');
+    const stopButton = document.querySelector('#stop');
+    const recordButton = document.querySelector('#record');
+    const volumeControl = document.querySelector('#volume-control');
+    const recordingStatus = document.querySelector('#recording-status');
+    const recordingsList = document.querySelector('#recordings-list');
+    const waterSound = document.querySelector('#water-sound');
+    const windSound = document.querySelector('#wind-sound');
+    const choirSound = document.querySelector('#choir-sound');
+    masterVolume.gain.value = 0.1;
+
+    let isRecording = false;
+    let mediaRecorder;
+    let audioChunks = [];
+    let recordings = [];
+    let currentOscillators = [];
+    let currentSounds = [];
+
+    volumeControl.addEventListener('input', changeVolume);
+
+    function changeVolume() {
+      masterVolume.gain.value = this.value;
+      currentOscillators.forEach(osc => osc.connect(masterVolume));
+      currentSounds.forEach(sound => sound.volume = this.value);
+    }
+
+    function stopAllSounds() {
+      currentOscillators.forEach(osc => osc.stop());
+      currentOscillators = [];
+      currentSounds.forEach(sound => {
+        sound.pause();
+        sound.currentTime = 0;
+      });
+      currentSounds = [];
+    }
+
+    // Toggle Water Sound
+    document.getElementById('sound-water').addEventListener('click', function() {
+      if (currentSounds.includes(waterSound)) {
+        waterSound.pause();
+        waterSound.currentTime = 0;
+        currentSounds = currentSounds.filter(sound => sound !== waterSound);
+      } else {
+        waterSound.play();
+        currentSounds.push(waterSound);
+      }
+    });
+
+    // Toggle Wind Sound
+    document.getElementById('sound-wind').addEventListener('click', function() {
+      if (currentSounds.includes(windSound)) {
+        windSound.pause();
+        windSound.currentTime = 0;
+        currentSounds = currentSounds.filter(sound => sound !== windSound);
+      } else {
+        windSound.play();
+        currentSounds.push(windSound);
+      }
+    });
+
+    // Toggle Choir Sound
+    document.getElementById('sound-choir').addEventListener('click', function() {
+      if (currentSounds.includes(choirSound)) {
+        choirSound.pause();
+        choirSound.currentTime = 0;
+        currentSounds = currentSounds.filter(sound => sound !== choirSound);
+      } else {
+        choirSound.play();
+        currentSounds.push(choirSound);
+      }
+    });
+
+    // Toggle Oscillator Sounds (Sine, Square, Triangle, Sawtooth)
+    function createOscillator(type) {
+      let oscillator = context.createOscillator();
+      oscillator.type = type;
+      oscillator.frequency.setValueAtTime(440, context.currentTime);
+      oscillator.connect(masterVolume);
+      oscillator.start();
+      return oscillator;
+    }
+
+    document.getElementById('sound-sine').addEventListener('click', function() {
+      if (currentOscillators.some(osc => osc.type === 'sine')) {
+        currentOscillators = currentOscillators.filter(osc => {
+          if (osc.type === 'sine') {
+            osc.stop();
+            return false;
+          }
+          return true;
+        });
+      } else {
+        currentOscillators.push(createOscillator('sine'));
+      }
+    });
+
+    document.getElementById('sound-square').addEventListener('click', function() {
+      if (currentOscillators.some(osc => osc.type === 'square')) {
+        currentOscillators = currentOscillators.filter(osc => {
+          if (osc.type === 'square') {
+            osc.stop();
+            return false;
+          }
+          return true;
+        });
+      } else {
+        currentOscillators.push(createOscillator('square'));
+      }
+    });
+
+    document.getElementById('sound-triangle').addEventListener('click', function() {
+      if (currentOscillators.some(osc => osc.type === 'triangle')) {
+        currentOscillators = currentOscillators.filter(osc => {
+          if (osc.type === 'triangle') {
+            osc.stop();
+            return false;
+          }
+          return true;
+        });
+      } else {
+        currentOscillators.push(createOscillator('triangle'));
+      }
+    });
+
+    document.getElementById('sound-sawtooth').addEventListener('click', function() {
+      if (currentOscillators.some(osc => osc.type === 'sawtooth')) {
+        currentOscillators = currentOscillators.filter(osc => {
+          if (osc.type === 'sawtooth') {
+            osc.stop();
+            return false;
+          }
+          return true;
+        });
+      } else {
+        currentOscillators.push(createOscillator('sawtooth'));
+      }
+    });
+
+    // Stop all sounds when clicking "Stop"
+    stopButton.addEventListener('click', function() {
+      stopAllSounds();
+    });
+
+    // Recording functionality
+    recordButton.addEventListener('click', function() {
+      if (isRecording) {
+        mediaRecorder.stop();
+        recordingStatus.textContent = 'Recording stopped.';
+        recordButton.textContent = 'Start Recording';
+      } else {
+        startRecording();
+        recordButton.textContent = 'Stop Recording';
+      }
+      isRecording = !isRecording;
+    });
+
+    function startRecording() {
+      audioChunks = [];
+
+      // Create MediaStreamDestinationNode to capture the audio context output
+      const destination = context.createMediaStreamDestination();
+      masterVolume.connect(destination);
+
+      // Create MediaRecorder to record from the destination
+      mediaRecorder = new MediaRecorder(destination.stream);
+      mediaRecorder.ondataavailable = function(event) {
+        audioChunks.push(event.data);
+      };
+
+      mediaRecorder.onstop = function() {
+        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audio = new Audio(audioUrl);  // Save the recording to the array
+        recordings.push(audio);
+
+        // Add the recording to the list with a download link
+        const listItem = document.createElement('li');
+        
+        // Create play button
+        const playButton = document.createElement('button');
+        playButton.textContent = 'Play';
+        playButton.onclick = function() {
+          audio.play();
+        };
+        
+        // Create download link
+        const downloadLink = document.createElement('a');
+        downloadLink.href = audioUrl;
+        downloadLink.download = `Recording_${recordings.length}.wav`;
+        downloadLink.textContent = `Download Recording ${recordings.length}`;
+
+        listItem.appendChild(playButton);
+        listItem.appendChild(downloadLink);
+        recordingsList.appendChild(listItem);
+
+        recordingStatus.textContent = 'Recording saved.';
+      };
+
+      mediaRecorder.start();
+      recordingStatus.textContent = 'Recording...';
+    }
+  </script>
 </body>
-
 </html>
