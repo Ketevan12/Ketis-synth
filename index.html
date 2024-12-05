@@ -4,8 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+      
+  @import url("https://use.typekit.net/lwe2khs.css");
     body {  
-      font-family: FuturisticYourselfRegular;
+      
+      font-family: "cofo-sans-pixel", sans-serif;
+font-weight: 400;
+font-style: normal;
       margin: 0;
       padding: 0;
       display: flex;
@@ -13,15 +18,16 @@
       background-color: #7a587f;
       background-image: URL("GUEST_8ad05a13-7cd5-4a41-b89a-0a267d1926de copy.jpg");
       height: 100vh;
+    
     }
-
     #title {
+      font-family: "cofo-sans-pixel", sans-serif;
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
-      color: rgb(255, 84, 84);
-      padding: 10px;
-      font-size: 3pc;
+      color: rgb(0, 0, 0);
+      
+      font-size: 4pc;
       margin-top: 30px;
       text-align: left;
       border-radius: 20px;
@@ -40,6 +46,7 @@
 
     .controls {
       justify-content: center ;
+      font-family: "cofo-sans-pixel", sans-serif;
 
     }
 
@@ -52,9 +59,9 @@
     }
 
     .button-group button {
-   
-      width: 90px;
-      height: 90px;
+      font-family: sans-serif;
+      width: 190px;
+      height: 190px;
       gap: 15px;
       border-radius: 120px;
       font-size: 24px;
@@ -68,10 +75,10 @@
 
     .button-group button {
       font-size: 24px;
-      margin-right: 90px;
+      margin-right: 190px;
       padding-left: 10px;
-      font-family: FuturisticYourselfRegular;
-      background-color: #ff0707;
+    
+      background-color: #ff5107;
     }
 
     .button-group button:hover {
@@ -92,52 +99,13 @@
       background-color: rgb(139, 0, 0);
     }
 
-
-
-    .sound-selection {
-     display: ;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      margin-top: 20px;
-      padding: 20px;
- 
-      position: fixed;
-      bottom: 20px;
-      z-index: 10;
-      text-align: center;
-      font-style: white;
-    }
-
-    .sound-selection button {
-      font-style: white;
-      overflow: hidden;
-      width:100px;
-      width: 230px;
-      height: 130px;  /* Adjusted size */
-      font-size: 34px;
-      background-color: #001859;
-      color: white;
-      border: none;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-      text-align: center;
-      border: #ff0787;
-      border-style: dashed;
-      font-family: FuturisticYourselfRegular ;
-
-
-    }
-
-    .sound-selection button:hover {
-      transform: scale(1.5);
-      transform:matrix3d(2.3)
-       /* Hover effect turns into star shape */
-    }
     .recording-status {
       font-size: 38px;
       margin-top: 10px;
       background-color: #f4ff9e;
       color: rgb(76, 15, 15);
       padding: 5px;
+     
       text-align: right;
 
     }
@@ -154,6 +122,7 @@
     }
 
     .recordings-list {
+      font-family: "cofo-sans-pixel", sans-serif;
       width:100px;
       align-items: left;
       list-style-type: none;
@@ -169,8 +138,59 @@
 
     }
 
+    .sound-selection {
+      font-family: "cofo-sans-pixel", sans-serif;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+      padding: 20px;
+ 
+      position: fixed;
+      bottom: 20px;
+      z-index: 10;
+      text-align: center;
+    }
+
+    .sound-selection button {
+      
+      font-family: "cofo-sans-pixel", sans-serif;
+      overflow: hidden;
+      width: 200px;
+      height: 100px;  /* Adjusted size */
+      font-size: 34px;
+      background-color: #e600ff;
+      border: none;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      text-align: center;
+      border: #f3ff07;
+      border-style: dashed;
+     margin-bottom: 20px;
+      margin-left: 109px;
+
+
+    }
+
+    .sound-selection button:hover {
+      transform: scale(1.5);
+      transform:matrix3d(2.3);
+      background-color:  #f3ff07;
+
+       /* Hover effect turns into star shape */
+    }
+
+    .sound-selection button:active {
+      transform: scale(1.7);
+    }
+
+    .sound-selection button#star-button {
+      background-color: #F8CA00;
+      width: 60px;
+       height: 10px;
+    }
+
     /* Adjust the right side recording section */
     #right-side {
+      font-family: "cofo-sans-pixel", sans-serif;
       position: fixed;
       right: 0;
       top: 0;
@@ -183,21 +203,248 @@
       justify-content: flex-start;
       align-items: flex-start;
       color: white;
+      margin-right: 170px;
     }
 
     #recordings-list {
       display:grid;
-      max-height: 80px;
+      max-height: 90px;
       overflow-y: auto;
       color: white;
       font-style: italic;
     }
     
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing:border-box;
+
+	&::selection {
+		background-color;white-space:  ;
+		color: darken(white, 20);
+		color: $dark;
+	}
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+  font-family: "cofo-sans-pixel", sans-serif;
+  
+  position: relative;
+  background: #fd17e2;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,.4) 100%);
+    z-index: 500;
+    mix-blend-mode: overlay;
+		pointer-events: none;
+  }
+}
+
+.noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 400;
+  opacity: .8;
+  pointer-events: none;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://ice-creme.de/images/background-noise.png');
+    pointer-events: none;
+  }
+
+  &-moving {
+    opacity: 1;
+    z-index: 450;
+
+    &:before {
+      will-change: background-position;
+      animation: noise 1s infinite alternate;
+    }
+  }
+}
+
+.scanlines {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 300;
+  opacity: .6;
+  will-change: opacity;
+  animation: opacity 3s linear infinite;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, .5) 51%);
+    background-size: 100% 4px;
+    will-change: background-color, background-size;
+    animation: scanlines .2s linear infinite;
+  }
+}
+
+.intro-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-family: 'Press Start 2P', cursive;
+  color: $white;
+  font-size: 2rem;
+  width: 100vw;
+  height: 100vh;
+  background: #2b52ff;
+
+  .noise {
+    &:before {
+      background-size: 200%;
+    }
+  }
+
+  .play {
+    font-family: "cofo-sans-pixel", sans-serif;
+    font-size: 90px;
+    position: absolute;
+    left: 2rem;
+    top: 2rem;
+    will-change: text-shadow;
+    animation: rgbText 2s steps(9) 0s infinite alternate;
+
+    .char {
+      will-change: opacity;
+      animation: type 1.2s infinite alternate;
+      animation-delay: calc(60ms * var(--char-index));
+    }
+  }
+
+  .time {
+    font-family: "cofo-sans-pixel", sans-serif;
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    will-change: text-shadow;
+    animation: rgbText 1s steps(9) 0s infinite alternate;
+  }
+
+  .recordSpeed {
+    position: absolute;
+    left: 2rem;
+    bottom: 2rem;
+    will-change: text-shadow;
+    animation: rgbText 1s steps(9) 0s infinite alternate;
+  }
+}
+
+
+
+/* Animations */
+@keyframes noise {
+  0%, 100% {background-position: 0 0;}
+  10% {background-position: -5% -10%;}
+  20% {background-position: -15% 5%;}
+  30% {background-position: 7% -25%;}
+  40% {background-position: 20% 25%;}
+  50% {background-position: -25% 10%;}
+  60% {background-position: 15% 5%;}
+  70% {background-position: 0 15%;}
+  80% {background-position: 25% 35%;}
+  90% {background-position: -10% 10%;}
+}
+
+@keyframes opacity {
+  0% {opacity: .6;}
+  20% {opacity:.3;}
+  35% {opacity:.5;}
+  50% {opacity:.8;}
+  60% {opacity:.4;}
+  80% {opacity:.7;}
+  100% {opacity:.6;}
+}
+
+@keyframes scanlines {
+  from {
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, .5) 51%);
+		background-size: 100% 4px;
+  }
+  to {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .5) 50%, transparent 51%);
+		background-size: 100% 4px;
+  }
+}
+
+@keyframes rgbText {
+  0% {
+    text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), 0px 0 1px rgba(251, 0, 231, 0.8), 0 0px 3px rgba(0, 233, 235, 0.8), 0px 0 3px rgba(0, 242, 14, 0.8), 0 0px 3px rgba(244, 45, 0, 0.8), 0px 0 3px rgba(59, 0, 226, 0.8);
+  }
+  25% {
+    text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), 0px 0 1px rgba(251, 0, 231, 0.8), 0 0px 3px rgba(0, 233, 235, 0.8), 0px 0 3px rgba(0, 242, 14, 0.8), 0 0px 3px rgba(244, 45, 0, 0.8), 0px 0 3px rgba(59, 0, 226, 0.8);
+  }
+  45% {
+    text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), 5px 0 1px rgba(251, 0, 231, 0.8), 0 5px 1px rgba(0, 233, 235, 0.8), -5px 0 1px rgba(0, 242, 14, 0.8), 0 -5px 1px rgba(244, 45, 0, 0.8), 5px 0 1px rgba(59, 0, 226, 0.8);
+  }
+  50% {
+    text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), -5px 0 1px rgba(251, 0, 231, 0.8), 0 -5px 1px rgba(0, 233, 235, 0.8), 5px 0 1px rgba(0, 242, 14, 0.8), 0 5px 1px rgba(244, 45, 0, 0.8), -5px 0 1px rgba(59, 0, 226, 0.8);
+  }
+  55% {
+    text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), 0px 0 3px rgba(251, 0, 231, 0.8), 0 0px 3px rgba(0, 233, 235, 0.8), 0px 0 3px rgba(0, 242, 14, 0.8), 0 0px 3px rgba(244, 45, 0, 0.8), 0px 0 3px rgba(59, 0, 226, 0.8);
+  }
+  90% {
+    text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), -5px 0 1px rgba(251, 0, 231, 0.8), 0 5px 1px rgba(0, 233, 235, 0.8), 5px 0 1px rgba(0, 242, 14, 0.8), 0 -5px 1px rgba(244, 45, 0, 0.8), 5px 0 1px rgba(59, 0, 226, 0.8);
+  }
+  100% {
+    text-shadow: -1px 1px 8px rgba(255, 255, 255, 0.6), 1px -1px 8px rgba(255, 255, 235, 0.7), 5px 0 1px rgba(251, 0, 231, 0.8), 0 -5px 1px rgba(0, 233, 235, 0.8), -5px 0 1px rgba(0, 242, 14, 0.8), 0 5px 1px rgba(244, 45, 0, 0.8), -5px 0 1px rgba(59, 0, 226, 0.8);
+  }
+}
+
+@keyframes type {
+  0%, 19% {opacity:0;}
+  20%, 100% {opacity:1;}
+}
+    
+
+
   </style>
 </head>
 <body>
+  <div class="scanlines"></div>
 
-  <div id="title">Ketis Synthesizer</div>
+  <div class="intro-wrap">
+    <div class="noise"></div>
+    <div class="noise noise-moving"></div>
+  
+    <div class="play" data-splitting>PLAY Ketis sound system!</div>
+    <div class="time">2024</div>
+    
+
+  <div id="title">*</div>
   
   <div id="container">
     <!-- Controls Section -->
@@ -211,6 +458,11 @@
       <label for="volume-control">Master Volume</label><br>
       <input type="range" id="volume-control" min="0" max="1" step="0.05" value="0.1"><br>
     </div>
+    <div class="controls">
+      <label for="pitch-control">Pitch</label><br>
+      <input type="range" id="pitch-control" min="0.5" max="2" step="0.01" value="1"><br>
+    </div>
+    
   </div>
 
   <!-- Recording Section on the right -->
@@ -225,228 +477,163 @@
 
   <!-- Sound selection at the bottom -->
   <div class="sound-selection">
+   
  
-    <button id="sound-water">Relax</button>
-    <button id="sound-wind">Wind</button>
-    <button id="sound-choir">wake me</button>
-    <button id="sound-sine">wavey</button>
-    <button id="sound-square">Squarey</button>
-    <button id="sound-triangle">Triangles</button>
-    <button id="sound-sawtooth">Toothy</button>
-  </div>
+    <button id="sound-noise">cool</button>
+    <button id="sound-ramp">awesome</button>
+    <button id="sound-sine">Great</button>
+    <button id="sound-square">yes</button>
+    <button id="sound-triangle">Okay</button>
+    <button id="sound-sawtooth">real</button>
+   
+ 
 
   <!-- Audio files for sound effects -->
-  <audio id="water-sound" src="relaxing-music-instrumental-romantic-chill-studying-mind-refreshing-128-ytshorts.savetube.me.mp3" preload="auto"></audio>
+  <audio id="water-sound" src="New Recording 54.m4a" preload="auto"></audio>
   <audio id="wind-sound" src="Free sound effect  wind sound.mp3" preload="auto"></audio>
-  <audio id="choir-sound" src="wake-me-up-avicii-one-voice-children-s-choir-kids-cover-official-music-video-128-ytshorts.savetube.me.mp3" preload="auto"></audio>
+  <audio id="choir-sound" src="" preload="auto"></audio>
+</div>
+</div>
+<script>
+  var AudioContext = window.AudioContext || window.webkitAudioContext;
+  const context = new AudioContext();
+  const masterVolume = context.createGain();
+  masterVolume.connect(context.destination);
 
-  <script>
-    var AudioContext = window.AudioContext || window.webkitAudioContext;
-    const context = new AudioContext();
-    const masterVolume = context.createGain();
-    masterVolume.connect(context.destination);
+  const recordButton = document.querySelector('#record');
+  const stopButton = document.querySelector('#stop');
+  const volumeControl = document.querySelector('#volume-control');
+  const recordingStatus = document.querySelector('#recording-status');
+  const recordingsList = document.querySelector('#recordings-list');
+  
+  let isRecording = false;
+  let mediaRecorder;
+  let audioChunks = [];
+  let recordings = [];
+  let currentOscillators = [];
 
-    const startButton = document.querySelector('#start');
-    const stopButton = document.querySelector('#stop');
-    const recordButton = document.querySelector('#record');
-    const volumeControl = document.querySelector('#volume-control');
-    const recordingStatus = document.querySelector('#recording-status');
-    const recordingsList = document.querySelector('#recordings-list');
-    const waterSound = document.querySelector('#water-sound');
-    const windSound = document.querySelector('#wind-sound');
-    const choirSound = document.querySelector('#choir-sound');
-    masterVolume.gain.value = 0.1;
+  volumeControl.addEventListener('input', changeVolume);
+  
+  function changeVolume() {
+    masterVolume.gain.value = this.value;
+  }
 
-    let isRecording = false;
-    let mediaRecorder;
-    let audioChunks = [];
-    let recordings = [];
-    let currentOscillators = [];
-    let currentSounds = [];
+  // Adjust pitch for both oscillator sounds and audio files
+  document.querySelector('#pitch-control').addEventListener('input', function() {
+    const pitchValue = parseFloat(this.value);
+    currentOscillators.forEach(osc => {
+      osc.frequency.setValueAtTime(440 * pitchValue, context.currentTime);
+    });
+  });
 
-    volumeControl.addEventListener('input', changeVolume);
+  function stopAllSounds() {
+    currentOscillators.forEach(osc => osc.stop());
+    currentOscillators = [];
+  }
 
-    function changeVolume() {
-      masterVolume.gain.value = this.value;
-      currentOscillators.forEach(osc => osc.connect(masterVolume));
-      currentSounds.forEach(sound => sound.volume = this.value);
+  // Create an oscillator and connect it to the master volume
+  function createOscillator(type) {
+    let oscillator = context.createOscillator();
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(440, context.currentTime);
+    oscillator.connect(masterVolume);
+    oscillator.start();
+    return oscillator;
+  }
+
+  // Toggle Oscillator Sounds
+  document.getElementById('sound-sine').addEventListener('click', function() {
+    let oscillator = createOscillator('sine');
+    currentOscillators.push(oscillator);
+  });
+
+  document.getElementById('sound-square').addEventListener('click', function() {
+    let oscillator = createOscillator('square');
+    currentOscillators.push(oscillator);
+  });
+
+  document.getElementById('sound-triangle').addEventListener('click', function() {
+    let oscillator = createOscillator('triangle');
+    currentOscillators.push(oscillator);
+  });
+
+  document.getElementById('sound-sawtooth').addEventListener('click', function() {
+    let oscillator = createOscillator('sawtooth');
+    currentOscillators.push(oscillator);
+  });
+  document.getElementById('sound-ramp').addEventListener('click', function() {
+    let oscillator = createOscillator('ramp');
+    currentOscillators.push(oscillator);
+  });
+
+  document.getElementById('sound-noise').addEventListener('click', function() {
+    let oscillator = createOscillator('noise');
+    currentOscillators.push(oscillator);
+  });
+
+  // Recording functionality
+  recordButton.addEventListener('click', function() {
+    if (isRecording) {
+      mediaRecorder.stop();
+      recordingStatus.textContent = 'Recording stopped.';
+      recordButton.textContent = 'Start Recording';
+    } else {
+      startRecording();
+      recordButton.textContent = 'Stop Recording';
     }
+    isRecording = !isRecording;
+  });
 
-    function stopAllSounds() {
-      currentOscillators.forEach(osc => osc.stop());
-      currentOscillators = [];
-      currentSounds.forEach(sound => {
-        sound.pause();
-        sound.currentTime = 0;
-      });
-      currentSounds = [];
-    }
+  function startRecording() {
+    audioChunks = [];
 
-    // Toggle Water Sound
-    document.getElementById('sound-water').addEventListener('click', function() {
-      if (currentSounds.includes(waterSound)) {
-        waterSound.pause();
-        waterSound.currentTime = 0;
-        currentSounds = currentSounds.filter(sound => sound !== waterSound);
-      } else {
-        waterSound.play();
-        currentSounds.push(waterSound);
-      }
-    });
+    // Create MediaStreamDestinationNode to capture the audio context output
+    const destination = context.createMediaStreamDestination();
+    masterVolume.connect(destination);
 
-    // Toggle Wind Sound
-    document.getElementById('sound-wind').addEventListener('click', function() {
-      if (currentSounds.includes(windSound)) {
-        windSound.pause();
-        windSound.currentTime = 0;
-        currentSounds = currentSounds.filter(sound => sound !== windSound);
-      } else {
-        windSound.play();
-        currentSounds.push(windSound);
-      }
-    });
+    // Create MediaRecorder to record from the destination
+    mediaRecorder = new MediaRecorder(destination.stream);
+    mediaRecorder.ondataavailable = function(event) {
+      audioChunks.push(event.data);
+    };
 
-    // Toggle Choir Sound
-    document.getElementById('sound-choir').addEventListener('click', function() {
-      if (currentSounds.includes(choirSound)) {
-        choirSound.pause();
-        choirSound.currentTime = 0;
-        currentSounds = currentSounds.filter(sound => sound !== choirSound);
-      } else {
-        choirSound.play();
-        currentSounds.push(choirSound);
-      }
-    });
+    mediaRecorder.onstop = function() {
+      const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);  // Save the recording to the array
+      recordings.push(audio);
 
-    // Toggle Oscillator Sounds (Sine, Square, Triangle, Sawtooth)
-    function createOscillator(type) {
-      let oscillator = context.createOscillator();
-      oscillator.type = type;
-      oscillator.frequency.setValueAtTime(440, context.currentTime);
-      oscillator.connect(masterVolume);
-      oscillator.start();
-      return oscillator;
-    }
-
-    document.getElementById('sound-sine').addEventListener('click', function() {
-      if (currentOscillators.some(osc => osc.type === 'sine')) {
-        currentOscillators = currentOscillators.filter(osc => {
-          if (osc.type === 'sine') {
-            osc.stop();
-            return false;
-          }
-          return true;
-        });
-      } else {
-        currentOscillators.push(createOscillator('sine'));
-      }
-    });
-
-    document.getElementById('sound-square').addEventListener('click', function() {
-      if (currentOscillators.some(osc => osc.type === 'square')) {
-        currentOscillators = currentOscillators.filter(osc => {
-          if (osc.type === 'square') {
-            osc.stop();
-            return false;
-          }
-          return true;
-        });
-      } else {
-        currentOscillators.push(createOscillator('square'));
-      }
-    });
-
-    document.getElementById('sound-triangle').addEventListener('click', function() {
-      if (currentOscillators.some(osc => osc.type === 'triangle')) {
-        currentOscillators = currentOscillators.filter(osc => {
-          if (osc.type === 'triangle') {
-            osc.stop();
-            return false;
-          }
-          return true;
-        });
-      } else {
-        currentOscillators.push(createOscillator('triangle'));
-      }
-    });
-
-    document.getElementById('sound-sawtooth').addEventListener('click', function() {
-      if (currentOscillators.some(osc => osc.type === 'sawtooth')) {
-        currentOscillators = currentOscillators.filter(osc => {
-          if (osc.type === 'sawtooth') {
-            osc.stop();
-            return false;
-          }
-          return true;
-        });
-      } else {
-        currentOscillators.push(createOscillator('sawtooth'));
-      }
-    });
-
-    // Stop all sounds when clicking "Stop"
-    stopButton.addEventListener('click', function() {
-      stopAllSounds();
-    });
-
-    // Recording functionality
-    recordButton.addEventListener('click', function() {
-      if (isRecording) {
-        mediaRecorder.stop();
-        recordingStatus.textContent = 'Recording stopped.';
-        recordButton.textContent = 'Start Recording';
-      } else {
-        startRecording();
-        recordButton.textContent = 'Stop Recording';
-      }
-      isRecording = !isRecording;
-    });
-
-    function startRecording() {
-      audioChunks = [];
-
-      // Create MediaStreamDestinationNode to capture the audio context output
-      const destination = context.createMediaStreamDestination();
-      masterVolume.connect(destination);
-
-      // Create MediaRecorder to record from the destination
-      mediaRecorder = new MediaRecorder(destination.stream);
-      mediaRecorder.ondataavailable = function(event) {
-        audioChunks.push(event.data);
+      // Add the recording to the list with a play button and download link
+      const listItem = document.createElement('li');
+      
+      // Create play button
+      const playButton = document.createElement('button');
+      playButton.textContent = 'Play';
+      playButton.onclick = function() {
+        audio.play();
       };
+      
+      // Create download link
+      const downloadLink = document.createElement('a');
+      downloadLink.href = audioUrl;
+      downloadLink.download = `Recording_${recordings.length}.wav`;
+      downloadLink.textContent = `Download Recording ${recordings.length}`;
 
-      mediaRecorder.onstop = function() {
-        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-        const audioUrl = URL.createObjectURL(audioBlob);
-        const audio = new Audio(audioUrl);  // Save the recording to the array
-        recordings.push(audio);
+      listItem.appendChild(playButton);
+      listItem.appendChild(downloadLink);
+      recordingsList.appendChild(listItem);
 
-        // Add the recording to the list with a download link
-        const listItem = document.createElement('li');
-        
-        // Create play button
-        const playButton = document.createElement('button');
-        playButton.textContent = 'Play';
-        playButton.onclick = function() {
-          audio.play();
-        };
-        
-        // Create download link
-        const downloadLink = document.createElement('a');
-        downloadLink.href = audioUrl;
-        downloadLink.download = `Recording_${recordings.length}.wav`;
-        downloadLink.textContent = `Download Recording ${recordings.length}`;
+      recordingStatus.textContent = 'Recording saved.';
+    };
 
-        listItem.appendChild(playButton);
-        listItem.appendChild(downloadLink);
-        recordingsList.appendChild(listItem);
+    mediaRecorder.start();
+    recordingStatus.textContent = 'Recording...';
+  }
 
-        recordingStatus.textContent = 'Recording saved.';
-      };
-
-      mediaRecorder.start();
-      recordingStatus.textContent = 'Recording...';
-    }
-  </script>
+  // Stop all sounds when clicking "Stop"
+  stopButton.addEventListener('click', function() {
+    stopAllSounds();
+  });
+</script>
 </body>
 </html>
