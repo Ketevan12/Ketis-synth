@@ -6,96 +6,112 @@
   <style>
       
   @import url("https://use.typekit.net/lwe2khs.css");
-  body {
-  font-family: "cofo-sans-pixel", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;  min-height: 100vh;
-  background-color: #000000;  margin: 0; 
+body {
+font-family: monospace;
+display: flex;
+justify-content: center;
+align-items: center; 
+background-color: lightblue;
+font-family: "cofo-sans-pixel", sans-serif; 
 }
-#container {
-  position: relative;
-  width: 50dvh;
-  text-align: center;
 
-  border: 3px dashed #0400ff;
+#container {
+position: relative;
+text-align: center;
+background-color:#70faff59;
+box-shadow: 0 0 10px 5px #ff00c8, inset 0 0 10px 5px #ffd6fd; 
 }
-    .play{
-      color:#0400ff;
-       padding: 30;
-       text-align: center;
-       font-size: 20px;
-background-color: #ff0000;
-       margin-bottom: 50px;
-       padding: 5px;
-       width: 100px;
-       border: 3px dashed #0400ff;
-       margin: 15px;     
-        justify-content: center; 
-       align-items: center;
-    }
-    .controls{
-      color: rgb(255, 255, 255);
-      justify-content: center; 
-      align-items: center;
-      font-size: 20px;
-    }
-    .sound-selection{ 
-padding: 15px;
-       color: rgb(255, 255, 255);
-      justify-content: center; 
-      align-items: center;
-      font-size: 55px;}
+ 
+
+ 
+.controls{
+color: #d6ffff;
+justify-content: center; 
+align-items: center;
+font-size: 1pc;
+width: 50%;
+height: 0%;
+margin-left: 70px;
+
+}
+
+
+
+#sound-selection button {
+flex: 1 1 100%;
+max-width: 20%;
+font-size: clamp(18px, 4vw, 28px);
+padding: clamp(3px, 2vw, 10px);
+}
+
+
+
+
+@media (max-width: 600px) {
+  #sound-selection button {
+    flex: 1 1 60%;
+  }
+}
+
+
 .button-group,
 .controls,
 .sound-selection {
   text-align: center;
 }
 button {
-  cursor: pointer;
-  font-family: "cofo-sans-pixel", sans-serif; 
-   border: none;
+cursor: pointer;
+font-family: "cofo-sans-pixel", sans-serif; 
+border: none;
 }
 
 button:hover {
-  background: #0400ff;
+background: #ec1fbc;
+color: rgb(160, 224, 0);
 }
-#waveform{
-  margin-top:7%;
-  margin-bottom: 7%;
-  width:260px;
-  height:170px;
-  border: 3px SOLID #0400ff;
 
+#waveform{
+margin-bottom: 5%;
+width:70%;
+height:70%;
+box-shadow:  0 0 20px 5px #ff70de;
+border:  1px SOLID  #ec1fbc;
+background-color: lightblue;
 }
+
+
 #recordings-dropdown{
   position: absolute;
-  top: 20px;
-  right: 10px;
-  color: rgb(255, 0, 0);
-  font-size: 10px;
-  border: 1px solid  rgb(255, 0, 0);
-  background: black;
+  top: 10px;
+  right: 12px;
+  color:#ec1fbc;
+  font-size: 11px;
+  border:  1px   solid #ec1fbc;
+  background-color: lightblue;
+  background-color: #9b087100;
   padding: 6px;
   cursor: pointer;
 }
+
+
 #recordings-dropdown:hover {
-  background: rgb(255, 255, 255);
+  background: #ec1fbc;
+  color: rgb(160, 224, 0);
 }
 
 #recordings-btn{
   position: absolute;
-  top: 40px;
+  top: 30px;
   right: 10px;
-  width: 120px;
-  max-height: 100px;
-  border: 1px solid rgb(255,255,255);
-  background: rgb(0, 0, 0);
+  width: 35%;
+  max-height: 200px;
+  color:#ec1fbc;
+  border:  1px   solid #ec1fbc;
+  background-color: lightblue;
   overflow-y: auto;
-  padding: 6px;
-  color: #0400ff;
+  padding: 16px;
   font-size: 10px;
-padding-bottom: 20px;
+  padding-bottom: 20px;
   margin-top: 15px;
   display: flex;
   flex-direction: column;   
@@ -109,27 +125,31 @@ padding-bottom: 20px;
   display: flex;
   flex-direction: column;  
   gap: 4px;
+  background-color: lightblue;
+  background-color: #9b087100;
 }
+
 #recordings-list li{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0px;  border: 1px solid rgb(255,255,255);
-  background: black;
+  gap: 0px;  
+  border: 1px solid rgb(255,255,255);
   overflow-y: auto;
   padding: 6px;
-  color: #0400ff;
+  border:  1px   solid #ec1fbc;
+  background-color: lightblue;
+  background-color: #9b087100;
   font-size: 10px;
-  margin-top: 15px;
   display: flex;
   flex-direction: column;   
   gap: 4px;
 }
+
 #sound-selection{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
   margin: 10px; 
   flex-wrap: wrap;       
   justify-content: center;
@@ -137,180 +157,212 @@ padding-bottom: 20px;
 }
 
 #sound-sine{
+  color:#ec1fbc;
+  border:  1px   solid #ec1fbc;
+  background-color: lightblue;
+  background-color: #9b087100;
   max-height: 150px;
-  border: 1px solid #0400ff;
-  background-color: #ff0000;
-  color: #0400ff;
   overflow-y: auto;   
   font-size: 30px;  
-  padding: 20px;
+  padding: 10px;
   margin: 5px;
 }
 
 #sound-sine:hover {
-  background: #ffffff;
+  background: #ec1fbc;
+  color: rgb(160, 224, 0);
 }
 #sound-square{
-  max-height: 150px;
-  border: 1px solid #0400ff;
-  background-color: #ff0000;
-  color: #0400ff;
+  max-height: 70px;
+  color:#ec1fbc;
+  font-size: 10px;
+  border:  1px   solid #ec1fbc;
+  background-color: lightblue;
+  background-color: #9b087100;
   overflow-y: auto;   
-  font-size: 30px;  padding: 20px;
+  font-size: 26px;  
+  padding: 10px;
   margin: 5px;
 }
 
 #sound-square:hover {
-  background: #ffffff;
+  background: #ec1fbc;
+  color: rgb(160, 224, 0);
 }
 #sound-triangle{
   max-height: 150px;
-  border: 1px solid #0400ff;
-  background-color: #ff0000;
-  color: #0400ff;
-  overflow-y: auto;   
-
-  font-size: 30px; 
-   padding: 20px;
+  color:#ec1fbc;
+  font-size: 10px;
+  border:  1px   solid #ec1fbc;
+  background-color: lightblue;
+  background-color: #9b087100;
+  font-size: 30px;  
+  padding: 10px;
   margin: 5px;
 }
 
 #sound-triangle:hover {
-  background: #ffffff;
+  background: #ec1fbc;
+  color: rgb(160, 224, 0);
 }
 #sound-sawtooth{
   max-height: 150px;
-  border: 1px solid #0400ff;
-  background-color: #ff0000;
-  color: #0400ff;
+  color:#ec1fbc;
+  font-size: 10px;
+  border:  1px   solid #ec1fbc;
+  background-color: lightblue;
+  background-color: #9b087100;
   overflow-y: auto;   
-  font-size: 30px; 
-   padding: 20px;
+  font-size: 30px;  
+  padding: 10px;
   margin: 5px;
 }
 
 #sound-sawtooth:hover {
-  background: #ffffff;
+  background: #ec1fbc;
+  color: rgb(160, 224, 0);
 }
 #mic{
-  max-height: 150px;
-  border: 1px solid rgb(255, 0, 0);
-  background: rgba(0, 0, 0, 0.738);
-  color:  rgb(255, 0, 0);
+  color:#ec1fbc;
+  border:  1px   solid #ec1fbc;
+  background-color: lightblue;
+  background-color: #9b087100;
   overflow-y: auto;   
-  font-size: 30px; 
-margin-left: 290px;
-
-margin-bottom: 10px;
-margin-top: -110px;
+  color:#ec1fbc;
+  flex: 6 3 40%;
+  font-size: clamp(10px, 4vw, 22px);
+  padding: clamp(5px, 1vw, 3px);
+  display: flex;  
+  justify-content: center;  
+  align-items: center;      
+  text-align: center;  
+  margin-left: 15%;  
+  margin-top: 1%;
 }
 
 #mic:hover {
-  background: #ffffff;
+  background: #ec1fbc;
+  color: rgb(160, 224, 0);
 }
-#record{  max-height: 150px;
-  border: 1px solid rgb(255, 0, 0);
-  background: rgba(0, 0, 0, 0.738);
-  color: rgb(255, 0, 0);
+#record{  
+  color:#ec1fbc;
+  border:  1px   solid #ec1fbc;
+  background-color: lightblue;
+  background-color: #9b087100;
   overflow-y: auto;   
-  font-size: 16px; 
-  padding: 14px;
-  margin-top: 50PX;
-  margin-bottom: -110PX;
-  border-radius: 260%;
-  margin-left: -200PX;
-
+  color:#ec1fbc;
+  flex: 6 3 40%;
+  font-size: clamp(10px, 4vw, 22px);
+  padding: clamp(5px, 1vw, 3px);
+  display: flex;  
+  justify-content: center;  
+  align-items: center;      
+  text-align: center;  
+  margin-left: 15%;
 }
 #record:hover {
-  background: #ff0000; color: rgb(255, 255, 255)
+  background: #ec1fbc;
+  color: rgb(160, 224, 0);
 }
 input[type="range"]::-webkit-slider-thumb{
   -webkit-appearance: none;
   appearance: none;
   width: 14px;
   height: 14px;
-  background: black;
-  border: 2px solid rgb(255, 0, 0);
+  border: 1px solid #ec1fbc;
   cursor: pointer;
+  margin-left: 50px;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover{
-  background: rgb(8,0,255);
-}/* slider track */
+  background: #ec1fbc;
+}
+
 input[type="range"]{
   -webkit-appearance: none;
   appearance: none;
   width: 180px;
   height: 8px;
-
   background: transparent;
-  border: 2px solid rgb(8,0,255);
-
-  margin-top: 6px;
+  border: 1px solid#ec1fbc;
+  margin-top: 5px;
 }
 
-/* slider knob */
 input[type="range"]::-webkit-slider-thumb{
   -webkit-appearance: none;
   appearance: none;
-
   width: 14px;
-  height: 14px;
-  background: black;
-  border: 2px solid rgb(8,0,255);
+  height: 10px;
+  background-color: #ec1fbc;
+  border: 1px solid#ec1fbc;
   cursor: pointer;
 }
 
-/* hover effect */
 input[type="range"]::-webkit-slider-thumb:hover{
-  background: rgb(8,0,255);
+  background-color: #ec1fbc;
 }
 .controls{
-  color: #0400ff;
-  margin-right: 97px;
+ color: #ec1fbc;
+
 }
-  </style>
+.page-header {
+  height: 100vh;
+
+}
+
+.heart {
+  margin-top: 5%;
+  margin-bottom: 10%;
+  margin-left: 5%;
+  width: 80px;
+color: #ec1fbc;
+  border: 1px solid#ec1fbc;
+}
+</style>
 </head>
 <body>
-
-  <div id="container">
   
+  <div class="page-header"></div>
+  <div id="container" class="cont2">
 
-    <button id="recordings-dropdown">RECORDINGS</button>
+    <div class="heart">
+        TINY SYNTH</div>
+
+
+    <button id="recordings-dropdown">Creations</button>
     <div id="recordings-btn" style="display:none;">
       <div class="recording-status" id="recording-status"></div>
       <ul class="recordings-list" id="recordings-list"></ul>
-    </div>
-    <div class="play">Tiny Synth</div>
+    </div> <canvas id="waveform" ></canvas>     
+
     
-    <div class="button-group" id="stop"> <button id="record">REC</button></div>
- <canvas id="waveform" width="260" height="80"></canvas>     
-      <div class="controls"> <button id="mic">MIC </button></div><div class="controls">
+    <div class="button-group" id="stop"> <button id="record">REC</button>
+
+   <button id="mic">MIC </button></div>
+      
+      <div class="controls">
         <label for="volume-control" >Volume</label><br>
         <input type="range"  id="volume-control" min="0" max="1" step="0.05" value="0.1"><br>
       </div>
       <div class="controls">
         <label for="pitch-control">Pitch</label><br>
         <input type="range" id="pitch-control" min="0.5" max="2" step="0.01" value="1"><br>
+       
       </div>
       
 
 
     <div id="sound-selection">
+    
 
-
- 
-
-      <button id="sound-sine">CRIMP</button>
-      <button id="sound-square">SLIDE</button>
-      <button id="sound-triangle">PINCH</button>
-      <button id="sound-sawtooth">CRAM</button>
+      <button id="sound-sine">(;</button>
+      <button id="sound-square">V:</button>
+      <button id="sound-triangle">:D</button>
+      <button id="sound-sawtooth">:P</button>
      
     </div>
+  </div>
 
-  <audio id="water-sound" src="New Recording 54.m4a" preload="auto"></audio>
-  <audio id="wind-sound" src="Free sound effect  wind sound.mp3" preload="auto"></audio>
-  <audio id="choir-sound" src="" preload="auto"></audio>
 </div>
 </div>
 </div></div>
@@ -369,14 +421,13 @@ function toggleOscillator(type){
 
   if(oscillators[type]){
 
-    // STOP SOUND
     oscillators[type].stop();
     oscillators[type].disconnect();
     delete oscillators[type];
 
   } else {
 
-    // START SOUND
+
     let oscillator = context.createOscillator();
 
     oscillator.type = type;
@@ -442,8 +493,7 @@ document.getElementById('sound-sawtooth').onclick = () => toggleOscillator('sawt
       const playButton = document.createElement('button');
       playButton.textContent = 'Play';
       playButton.onclick = () => audio.play();
-      playButton.style.backgroundColor = 'white';
-      playButton.style.color = 'blue';
+      playButton.style.color = 'pink';
 
       const downloadLink = document.createElement('a');
       downloadLink.href = audioUrl;
@@ -477,7 +527,7 @@ async function toggleMic(){
 
   if(!micStream){
 
-    // START MIC
+
     micStream = await navigator.mediaDevices.getUserMedia({audio:true});
 
     micSource = context.createMediaStreamSource(micStream);
@@ -488,7 +538,7 @@ async function toggleMic(){
 
   } else {
 
-    // STOP MIC
+
     micStream.getTracks().forEach(track => track.stop());
 
     if(micSource){
@@ -514,14 +564,14 @@ async function toggleMic(){
   
     analyser.getByteTimeDomainData(dataArray);
   
-    canvasCtx.fillStyle = "black";
+    canvasCtx.fillStyle = "lightblue";
     canvasCtx.fillRect(0,0,canvas.width,canvas.height);
   
-    canvasCtx.strokeStyle = "RED";
+    canvasCtx.strokeStyle = "hotpink";
     canvasCtx.lineWidth = 2;
   
-    canvasCtx.shadowColor = "pink";
-    canvasCtx.shadowBlur = 6;
+    canvasCtx.shadowColor = "green";
+    canvasCtx.shadowBlur = 3;
   
     canvasCtx.beginPath();
   
@@ -544,7 +594,7 @@ async function toggleMic(){
   
     }
   
-    canvasCtx.lineTo(canvas.width, canvas.height/2);
+    canvasCtx.lineTo(canvas.width, canvas.height/1);
   
     canvasCtx.stroke();
   
@@ -571,18 +621,18 @@ mediaRecorder && (mediaRecorder.onstop = function() {
   recordings.push(audio);
 
   const listItem = document.createElement('li');
-  listItem.style.marginBottom = '4px';
+  listItem.style.marginBottom = '2px';
 
   const playButton = document.createElement('button');
   playButton.textContent = '▶️';
-  playButton.style.marginRight = '4px';
+  playButton.style.marginRight = '5px';
   playButton.onclick = () => audio.play();
 
   const downloadLink = document.createElement('a');
   downloadLink.href = audioUrl;
   downloadLink.download = `Recording_${recordings.length}.wav`;
   downloadLink.textContent = '⬇';
-  downloadLink.style.color = 'pink';
+  downloadLink.style.color = 'green';
   downloadLink.style.textDecoration = 'none';
 
   listItem.appendChild(playButton);
