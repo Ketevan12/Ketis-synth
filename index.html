@@ -15,19 +15,16 @@ background-color: yellow;
 font-family: "cofo-sans-pixel", sans-serif; 
 }
 
- 
-.controls{
-  padding-top: 10px;
-justify-content: center; 
-align-items: center;
-font-size: 19px;
-width: 40%;
-margin-top: -90px;
-margin-left: 170px;
-flex: 1 1 100%;
-background-color: yellow;
-}
 
+
+.controls {
+  position: absolute;
+  right: 5%;
+  top: 60%;   /* sits under waveform */
+  
+  text-align: right;
+  color: #ec1fbc;
+}
 
 .button-group,
 .controls,
@@ -47,8 +44,8 @@ button:hover {
 
 #waveform{
 margin-bottom: 5%;
-width:50%;
-height:30%;
+width:60%;
+height:40%;
 box-shadow:  0 0 20px 5px #ff70de;
 border:  1px SOLID  #ec1fbc;
 }
@@ -63,6 +60,7 @@ border:  1px SOLID  #ec1fbc;
   background-color: yellow;
   padding: 6px;
   cursor: pointer;
+  
 }
 
 #recordings-dropdown:hover {
@@ -72,9 +70,8 @@ border:  1px SOLID  #ec1fbc;
 
 #recordings-btn {
   position: absolute;
-  top: 30px;
+  top: 40px;
   right: 10px;
-  width: 35%;
   max-height: 200px;
   color: #ec1fbc;
   border: 1px solid #ec1fbc;
@@ -116,29 +113,41 @@ border:  1px SOLID  #ec1fbc;
   
 }
 #sound-selection button {
-flex: 1 1 100%;
-max-width: 30%;
-font-size: clamp(28px, 4vw, 38px);
-padding: clamp(3px, 2vw, 5px);
-}
-
-
-
-
-@media (max-width: 600px) {
   #sound-selection button {
-    flex: 1 1 60%;
-  }
-}
-#sound-selection{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
   display: flex;
   justify-content: center;
-  background-color: yellow;
   align-items: center;
-  margin: 60px; 
-  flex-wrap: wrap;       
-  justify-content: center;
 
+  font-size: clamp(16px, 4vw, 28px);
+}
+}
+
+@media (max-width: 600px) {
+  #sound-selection {
+    grid-template-columns: repeat(4, auto); 
+
+
+  }
+}
+
+#sound-selection {
+ 
+  position: absolute;   
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+
+  height: 30%;     
+  background-color: yellow;
 }
 
 #sound-sine{
@@ -146,7 +155,6 @@ padding: clamp(3px, 2vw, 5px);
   border:  1px   solid #ec1fbc;
   background-color:yellow;
   max-height: 150px;
-  overflow-y: auto;   
   font-size: 30px;  
   padding: 10px;
   margin: 5px;
@@ -157,13 +165,11 @@ padding: clamp(3px, 2vw, 5px);
   color: yellow;
 }
 #sound-square{
-  max-height: 70px;
   color:#ec1fbc;
-  font-size: 10px;
   border:  1px   solid #ec1fbc;
-  background-color: yellow;
-  overflow-y: auto;   
-  font-size: 26px;  
+  background-color:yellow;
+  max-height: 150px;
+  font-size: 30px;  
   padding: 10px;
   margin: 5px;
 }
@@ -299,18 +305,14 @@ input[type="range"]::-webkit-slider-thumb:hover{
   border: 1px solid#ff00c8;
 }
 #cont2{
-  position: fixed; 
-  top: 9;
-  left: 10;
   width: 90vw;      
   height: 90vh;   
   text-align: center;
   background-color: yellow;
-  box-shadow: 0 0 10px 5px #ff00c8; 
-  overflow-y: auto;
+  box-shadow: 0 0 10px 5px #ff00c8;
+
+  position: relative;
 }
-
-
 
 
 </style>
@@ -346,6 +348,8 @@ input[type="range"]::-webkit-slider-thumb:hover{
 
       <button id="sound-sine">(;</button>
       <button id="sound-square">V:</button>
+
+    
       <button id="sound-triangle">:D</button>
       <button id="sound-sawtooth">:P</button>
      
