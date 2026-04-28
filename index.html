@@ -15,7 +15,19 @@ background-color:yellow;
 font-family: "cofo-sans-pixel", sans-serif; 
 }
 
+.ui-btn {
+  background-color: yellow;
+  color: #ec1fbc;
+  border: 1px solid #ec1fbc;
+  font-family: "cofo-sans-pixel", sans-serif;
+  cursor: pointer;
+}
 
+.ui-btn:hover {
+  background-color: #ec1fbc;
+  color: yellow;
+  border: 1px solid yellow;
+}
 
 .controls {
   position: absolute;
@@ -60,47 +72,47 @@ width:80%;
 height:30%;
 box-shadow:  0 0 20px 5px #ff70de;
 border:  1px SOLID  #ec1fbc;
-}
-
-#recordings-dropdown {
+}#recordings-dropdown {
   position: absolute;
   top: 10px;
   right: 12px;
-  color: #ec1fbc;
   font-size: 13px;
-  border: 1px solid #ec1fbc;
-  background-color: yellow;
   padding: 6px;
   cursor: pointer;
-  
+
+  background-color: yellow;
+  color: #ec1fbc;
+  border: 1px solid #ec1fbc;
 }
 
 #recordings-dropdown:hover {
-  background-color: yellow;
-
+  background-color: #ec1fbc;
+  color: yellow;
+  border: 1px solid yellow;
 }
 
 #recordings-btn {
   position: absolute;
-  top: 40px;
+  top: 27px;
   right: 10px;
   max-height: 200px;
-  color: #ec1fbc;
-  border: 1px solid #ec1fbc;
   overflow-y: auto;
   padding: 16px;
-  font-size: 10px;
   margin-top: 15px;
+
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 3px;
+
   background-color: yellow;
+  color: #ec1fbc;
+  border: 1px solid #ec1fbc;
 }
 
 #recordings-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 3;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -110,19 +122,15 @@ border:  1px SOLID  #ec1fbc;
 
 #recordings-list li {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 4px;
-  padding: 6px;
-  border: 1px solid #ec1fbc;
-  background-color: yellow;
-  font-size: 10px;
-  color: #ec1fbc;
+  flex-direction: row; 
+  align-items: center;
+
 }
 
 #recordings-list li:hover {
-  background-color: #ec1fbc;
-  
+
+  color: yellow;
+  border: 1px solid yellow;
 }
 #sound-selection button {
 
@@ -364,6 +372,30 @@ height:40%;
   width: 34px;
   height: 34px;
 }
+.ui-btn {
+padding: 3px;
+  background-color: yellow;
+  color: #ec1fbc;
+  border: 1px solid #ec1fbc;
+  font-family: "cofo-sans-pixel", sans-serif;
+  cursor: pointer;
+  text-decoration: none;   
+
+}
+
+.ui-btn:hover {
+  background-color: #ec1fbc;
+  color: yellow;
+  border: 1px solid yellow;
+  
+}
+
+
+.ui-btn:link,
+.ui-btn:visited,
+.ui-btn:active {
+
+}
 
 </style>
 </head>
@@ -426,81 +458,60 @@ height:40%;
 
 </div>
 </div>
-</div></div>
+</div>
 <script>
 
-  var AudioContext = window.AudioContext || window.webkitAudioContext;
-  const context = new AudioContext();
-  
-  const masterVolume = context.createGain();
-  masterVolume.connect(context.destination);
-  
-  const analyser = context.createAnalyser();
-  analyser.fftSize = 2048;
-  
-  masterVolume.connect(analyser);
-  
-  const bufferLength = analyser.frequencyBinCount;
-  const dataArray = new Uint8Array(bufferLength);
-  
-  const recordButton = document.querySelector('#record');
-  const stopButton = document.querySelector('#stop');
-  const volumeControl = document.querySelector('#volume-control');
-  const recordingStatus = document.querySelector('#recording-status');
-  const recordingsList = document.querySelector('#recordings-list');
-  
-  let isRecording = false;
-  let mediaRecorder;
-  let audioChunks = [];
-  let recordings = [];
-  let currentOscillators = [];
-  
-  volumeControl.addEventListener('input', changeVolume);
-  
-  function changeVolume() {
-    masterVolume.gain.value = this.value;
-  }
-  
-  document.querySelector('#pitch-control').addEventListener('input', function() {
+var AudioContext = window.AudioContext || window.webkitAudioContext;
+const context = new AudioContext();
 
-const pitchValue = parseFloat(this.value);
+const masterVolume = context.createGain();
+masterVolume.connect(context.destination);
 
-Object.values(oscillators).forEach(osc => {
+const analyser = context.createAnalyser();
+analyser.fftSize = 2048;
+masterVolume.connect(analyser);
 
-  osc.frequency.setValueAtTime(440 * pitchValue, context.currentTime);
+const bufferLength = analyser.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
 
+const recordButton = document.querySelector('#record');
+const stopButton = document.querySelector('#stop');
+const volumeControl = document.querySelector('#volume-control');
+const recordingStatus = document.querySelector('#recording-status');
+const recordingsList = document.querySelector('#recordings-list');
+
+let isRecording = false;
+let mediaRecorder;
+let audioChunks = [];
+let recordings = [];
+let oscillators = {};
+
+volumeControl.addEventListener('input', function () {
+  masterVolume.gain.value = this.value;
 });
 
+// 🎚 pitch control
+document.querySelector('#pitch-control').addEventListener('input', function () {
+  const pitchValue = parseFloat(this.value);
+  Object.values(oscillators).forEach(osc => {
+    osc.frequency.setValueAtTime(440 * pitchValue, context.currentTime);
+  });
 });
-  
-  function stopAllSounds() {
-    currentOscillators.forEach(osc => osc.stop());
-    currentOscillators = [];
-  }let oscillators = {};
 
-function toggleOscillator(type){
-
-  if(oscillators[type]){
-
+// 🔊 oscillator toggle
+function toggleOscillator(type) {
+  if (oscillators[type]) {
     oscillators[type].stop();
     oscillators[type].disconnect();
     delete oscillators[type];
-
   } else {
-
-
     let oscillator = context.createOscillator();
-
     oscillator.type = type;
     oscillator.frequency.setValueAtTime(440, context.currentTime);
-
     oscillator.connect(masterVolume);
     oscillator.start();
-
     oscillators[type] = oscillator;
-
   }
-
 }
 
 document.getElementById('sound-sine').onclick = () => toggleOscillator('sine');
@@ -508,200 +519,150 @@ document.getElementById('sound-square').onclick = () => toggleOscillator('square
 document.getElementById('sound-triangle').onclick = () => toggleOscillator('triangle');
 document.getElementById('sound-sawtooth').onclick = () => toggleOscillator('sawtooth');
 
-  
-  recordButton.addEventListener('click', function() {
-  
-    if (isRecording) {
-  
-      mediaRecorder.stop();
-      recordingStatus.textContent = 'Recording stopped.';
-      recordButton.textContent = 'ON';
-  
-    } else {
-  
-      startRecording();
-      recordButton.textContent = 'OFF';
-  
-    }
-  
-    isRecording = !isRecording;
-  
-  });
-  
-  function startRecording() {
-  
-    audioChunks = [];
-  
-    const destination = context.createMediaStreamDestination();
-    masterVolume.connect(destination);
-  
-    mediaRecorder = new MediaRecorder(destination.stream);
-  
-    mediaRecorder.ondataavailable = function(event) {
-      audioChunks.push(event.data);
-    };
-  
-    mediaRecorder.onstop = function() {
-  
-      const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-      const audioUrl = URL.createObjectURL(audioBlob);
-  
-      const audio = new Audio(audioUrl);
-      recordings.push(audio);
-  
-      const listItem = document.createElement('li');
-  
-      const playButton = document.createElement('button');
-      playButton.textContent = 'Play';
-      playButton.onclick = () => audio.play();
- ;
-
-      const downloadLink = document.createElement('a');
-      downloadLink.href = audioUrl;
-      downloadLink.download = `Recording_${recordings.length}.wav`;
-      downloadLink.textContent = `Download Recording ${recordings.length}`;
-  
-      listItem.appendChild(playButton);
-      listItem.appendChild(downloadLink);
-      recordingsList.appendChild(listItem);
-  
-      recordingStatus.textContent = 'Recording saved.';
-  
-    };
-  
-    mediaRecorder.start();
-    recordingStatus.textContent = 'Recording...';
-  
+// ⏺ record toggle
+recordButton.addEventListener('click', function () {
+  if (isRecording) {
+    mediaRecorder.stop();
+    recordingStatus.textContent = 'Recording stopped.';
+    recordButton.textContent = 'REC';
+  } else {
+    startRecording();
+    recordButton.textContent = 'STOP';
   }
-  
+  isRecording = !isRecording;
+});
 
-  stopButton.onclick = stopAllSounds;
+// 🎙 start recording
+function startRecording() {
+  audioChunks = [];
 
+  const destination = context.createMediaStreamDestination();
+  masterVolume.connect(destination);
+
+  mediaRecorder = new MediaRecorder(destination.stream);
+
+  mediaRecorder.ondataavailable = function (event) {
+    audioChunks.push(event.data);
+  };
+
+  mediaRecorder.onstop = function () {
+    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+    const audioUrl = URL.createObjectURL(audioBlob);
+
+    const audio = new Audio(audioUrl);
+    recordings.push(audio);
+
+    const listItem = document.createElement('li');
+    listItem.style.display = 'flex';
+    listItem.style.alignItems = 'center';
+    listItem.style.gap = '5px';
+
+    const index = recordings.length;
+
+    // ▶️ play
+    const playButton = document.createElement('button');
+    playButton.textContent = 'Play';
+    playButton.classList.add('ui-btn');
+    playButton.onclick = () => audio.play();
+
+    // ⬇ download
+    const downloadLink = document.createElement('a');
+    downloadLink.href = audioUrl;
+    downloadLink.download = `Recording_${index}.wav`;
+    downloadLink.textContent = `Download ${index} ⬇`;
+    downloadLink.classList.add('ui-btn');
+
+    listItem.appendChild(playButton);
+    listItem.appendChild(downloadLink);
+    recordingsList.appendChild(listItem);
+
+    recordingStatus.textContent = 'Recording saved.';
+  };
+
+  mediaRecorder.start();
+  recordingStatus.textContent = 'Recording...';
+}
+
+// 🛑 stop all oscillators
+stopButton.onclick = () => {
+  Object.values(oscillators).forEach(osc => {
+    osc.stop();
+    osc.disconnect();
+  });
+  oscillators = {};
+};
+
+// 🎤 mic input
 const micButton = document.querySelector("#mic");
-
 let micStream;
 let micSource;
 
-micButton.onclick = toggleMic;
-
-async function toggleMic(){
-
-  if(!micStream){
-
-
-    micStream = await navigator.mediaDevices.getUserMedia({audio:true});
-
+micButton.onclick = async function () {
+  if (!micStream) {
+    micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
     micSource = context.createMediaStreamSource(micStream);
-
     micSource.connect(masterVolume);
-
     micButton.textContent = "OFF";
-
   } else {
-
-
     micStream.getTracks().forEach(track => track.stop());
-
-    if(micSource){
-      micSource.disconnect();
-    }
-
+    if (micSource) micSource.disconnect();
     micStream = null;
     micSource = null;
-
     micButton.textContent = "MIC";
+  }
+};
 
+// 📈 waveform
+const canvas = document.getElementById("waveform");
+const canvasCtx = canvas.getContext("2d");
+
+function drawWave() {
+  requestAnimationFrame(drawWave);
+
+  analyser.getByteTimeDomainData(dataArray);
+
+  canvasCtx.fillStyle = "yellow";
+  canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
+
+  canvasCtx.strokeStyle = "hotpink";
+  canvasCtx.lineWidth = 2;
+  canvasCtx.shadowColor = "purple";
+  canvasCtx.shadowBlur = 3;
+
+  canvasCtx.beginPath();
+
+  const sliceWidth = canvas.width / bufferLength;
+  let x = 0;
+
+  for (let i = 0; i < bufferLength; i++) {
+    const v = dataArray[i] / 128.0;
+    const y = v * canvas.height / 2;
+
+    if (i === 0) {
+      canvasCtx.moveTo(x, y);
+    } else {
+      canvasCtx.lineTo(x, y);
+    }
+
+    x += sliceWidth;
   }
 
+  canvasCtx.lineTo(canvas.width, canvas.height / 2);
+  canvasCtx.stroke();
 }
 
-  
-  const canvas = document.getElementById("waveform");
-  const canvasCtx = canvas.getContext("2d");
-  
-  function drawWave(){
-  
-    requestAnimationFrame(drawWave);
-  
-    analyser.getByteTimeDomainData(dataArray);
-  
-    canvasCtx.fillStyle = "yellow";
-    canvasCtx.fillRect(0,0,canvas.width,canvas.height);
-  
-    canvasCtx.strokeStyle = "hotpink";
-    canvasCtx.lineWidth = 2;
-  
-    canvasCtx.shadowColor = "purple";
-    canvasCtx.shadowBlur = 3;
-  
-    canvasCtx.beginPath();
-  
-    const sliceWidth = canvas.width / bufferLength;
-  
-    let x = 0;
-  
-    for(let i = 0; i < bufferLength; i++){
-  
-      const v = dataArray[i] / 128.0;
-      const y = v * canvas.height/2;
-  
-      if(i === 0){
-        canvasCtx.moveTo(x,y);
-      } else {
-        canvasCtx.lineTo(x,y);
-      }
-  
-      x += sliceWidth;
-  
-    }
-  
-    canvasCtx.lineTo(canvas.width, canvas.height/1);
-  
-    canvasCtx.stroke();
-  
-  }
-  
-  drawWave();
-  const recordingsBtn = document.getElementById('recordings-btn');
+drawWave();
+
+// 📂 recordings dropdown
+const recordingsBtn = document.getElementById('recordings-btn');
 const recordingsDropdown = document.getElementById('recordings-dropdown');
 
 recordingsDropdown.onclick = () => {
-
-  if (recordingsBtn.style.display === 'none') {
-    recordingsBtn.style.display = 'block';
-  } else {
-    recordingsBtn.style.display = 'none';
-  }
-
+  recordingsBtn.style.display =
+    recordingsBtn.style.display === 'none' ? 'block' : 'none';
 };
-mediaRecorder && (mediaRecorder.onstop = function() {
-  const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-  const audioUrl = URL.createObjectURL(audioBlob);
 
-  const audio = new Audio(audioUrl);
-  recordings.push(audio);
-
-  const listItem = document.createElement('li');
-  listItem.style.marginBottom = '2px';
-
-  const playButton = document.createElement('button');
-  playButton.textContent = '▶️';
-  playButton.style.marginRight = '5px';
-  playButton.onclick = () => audio.play();
-
-  const downloadLink = document.createElement('a');
-  downloadLink.href = audioUrl;
-  downloadLink.download = `Recording_${recordings.length}.wav`;
-  downloadLink.textContent = '⬇';
-
-
-  listItem.appendChild(playButton);
-  listItem.appendChild(downloadLink);
-  recordingsList.appendChild(listItem);
-
-  recordingStatus.textContent = 'Recording saved.';
-  
-});
+// 🔊 resume audio context on interaction
 document.querySelectorAll('button').forEach(btn => {
   btn.addEventListener('click', () => {
     if (context.state === 'suspended') {
@@ -709,6 +670,6 @@ document.querySelectorAll('button').forEach(btn => {
     }
   });
 });
-  </script>
-</body>
+</script>
 </html>
+</body>
