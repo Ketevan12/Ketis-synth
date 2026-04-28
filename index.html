@@ -569,7 +569,7 @@ function startRecording() {
     const downloadLink = document.createElement('a');
     downloadLink.href = audioUrl;
     downloadLink.download = `Recording_${index}.wav`;
-    downloadLink.textContent = `Download ${index} ⬇`;
+    downloadLink.textContent = `Download ${index} `;
     downloadLink.classList.add('ui-btn');
 
     listItem.appendChild(playButton);
